@@ -1,0 +1,533 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>Вход на сайт</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=7; IE=Edge">
+    <style>
+        body {
+            margin: 0;
+            font: 13px 'arial', 'freesans', 'dejavu sans condensed', sans-serif;
+            background: #fff;
+            color: #000;
+        }
+        ol, ul, li {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login {
+            width: 300px;
+            font: 15px/20px tahoma, arial, sans-serif;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .login h4 {
+            font: normal 20px/25px tahoma, arial, sans-serif;
+            margin: -3px 0 25px -2px;
+	        padding: 0;
+            color: #2d2d2d ;
+        }
+        .login a {
+            color: #6c167d;
+        }
+        .login li {
+            margin-bottom: 13px;
+            font-size: 13px;
+            color: #2d2d2d;
+        }
+        .login li.password {
+            margin: 0 0 25px;
+        }
+        .login .forgot {
+            text-decoration: none;
+            font-size: 13px;
+            color: #2d2d2d;
+            border-bottom: 1px solid #c0c0c0;
+        }
+        .login .for-register {
+            float: right;
+            margin: 25px 0;
+        }
+        .login .for-forgot {
+            display: inline-block;
+            margin: 25px 0;
+            overflow: hidden;
+            padding-bottom: 1px;
+            vertical-align: top;
+        }
+        .login .for-error {
+            margin-bottom: 0;
+        }
+        .login input[type=text],
+        .login input[type=password] {
+           -moz-box-sizing: border-box;
+           -webkit-box-sizing: border-box; /*safari 4*/
+            box-sizing: border-box;
+            width: 100%; *width: 98%;
+            margin-top: 7px;
+            font: 14px tahoma, arial, sans-serif;
+            color: #323232;
+            padding: 12px 12px 11px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .login input.input-validation-error {
+            border-color: #da0a92;
+            background: #fde9f6;
+        }
+        .login .submit a {
+            float: right;
+            line-height: 27px;
+            text-decoration: underline;
+        }
+        .login .submit {
+            padding: 0;
+            margin: 0;
+        }
+        .login .submit label {
+            display: block;
+            line-height: 25px;
+            color: #8b8b8b;
+            cursor: pointer;
+            padding-top: 20px;
+        }
+        .login .submit button {
+            width: 100%;
+            height: 50px;
+            padding: 0 30px;/
+            margin: -7px 0 0;
+            font: 13px tahoma, arial, sans-serif;
+            color: #fff;
+            border: none;
+            background: #646464;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            outline: none;
+        }
+        .login .submit button[disabled="disabled"] {
+            background: #e8e8e8;
+            color: #8b8b8b;
+            /*background: -webkit-linear-gradient(#c3a8d4, #c3a8d4 50%, #bea4d2 50%, #bea4d2);
+            background:         linear-gradient(#c3a8d4, #c3a8d4 50%, #bea4d2 50%, #bea4d2);*/
+        }
+        .login .submit img {
+            float: left;
+            margin: -3px 0 -2px;
+        }
+        .login .errormsg {
+            width: 100%;
+            font-size: 13px;
+            color: #da0a92;
+        }
+        .login #rememberMe {
+            float: left;
+            margin: 1px 7px 7px 0;
+            padding: 1px; /*ie*/
+        }
+
+        *+html .forgot {
+            margin-top: -1.1em;
+        }
+        .login .loading {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url("//static.wbstatic.net/i/loading2.gif") no-repeat 50% 50% #fff;
+            opacity: .7;
+            filter: alpha(opacity=70);
+            z-index: 10;
+        }
+        /*Вход через социальные сети*/
+        .social-input {
+            width: 290px;
+            margin: 0 auto;
+            font-size: 0;
+            font-size: 1px\0/;/*IE8*/
+            border-top: 1px solid #dadada;
+            text-align: justify;
+        }
+        .social-input:after {
+            width: 100%;
+            height: 0;
+            display: inline-block;
+            content: "";
+        }
+        .social-input .social-head {
+            font-size: 15px;
+            color: #2d2d2d;
+            margin: 20px 0 15px;
+            word-spacing: 1px;
+            text-align: center;
+        }
+        .social-input a {
+            width: 3.3em;
+            height: 3.3em;
+            display: inline-block;
+            font-size: 13px;
+            color: transparent;
+            background: url("//static.wbstatic.net/i/icons_sprite.svg?5") no-repeat;
+            background-size: 128px 296px;
+            vertical-align: top;
+        }
+        .social-input .vkontakte {
+            background-position: -85px -43px;
+        }
+
+        .social-input .facebook {
+            background-position: -1px -1px;
+        }
+    
+        .social-input .moimir {
+            background-position: -43px -168px;
+        }
+
+        .social-input .mailru {
+            background-position: -43px -168px;
+        }
+  
+        .social-input .odnoklassniki {
+            background-position: -85px -1px;
+        }
+ 
+        .social-input .googleplus {
+            background-position: -85px -127px;
+        }
+ 
+        .social-input .instagram {
+            background-position: -43px -1px;
+        }
+ 
+        .auth-captcha input[type="text"] {
+            margin-top: 15px;
+        }
+        .LBD_CaptchaImageDiv,
+        .LBD_CaptchaIconsDiv{
+            display: inline-block;
+            vertical-align: top;
+        }
+        .LBD_CaptchaIconsDiv {
+            margin-top: 12px;
+            margin-left: 5px;
+        }
+        .LBD_ReloadLink {
+            width: 17px;
+            height: 16px;
+            display: inline-block;
+            background: url("//static.wbstatic.net/i/ornament.png?10") no-repeat -57px -532px;
+        }
+        #signIn_ReloadIcon {
+            display: none;
+        }
+        .hide {
+            display: none !important;
+        }
+        .login .tfa {
+            margin-top: 12px;
+            margin-bottom: 26px;
+            position: relative;
+        }
+        .login .tfa i {
+            width: 16px;
+            height: 15px;
+            padding-top: 1px;
+            margin-right: 3px;
+            display: inline-block;
+            font-size: 11px;
+            font-style: normal;
+            line-height: 16px;
+            color: #fff;
+            text-align: center;
+            background: #dadada;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .login .tfa span {
+            color: #272727;
+            border-bottom: 1px dotted;
+            cursor: pointer;
+        }
+        .tooltipster {
+            width: 273px;
+            padding: 14px 14px 6px;
+            position: absolute;
+            top: 30px;
+            left: 1px;
+            font: 13px/18px arial, freesans, sans-serif;
+            color: #272727;
+            background: #fff;
+            border: 1px solid #ededed;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, .31);
+            border-radius: 4px;
+            box-sizing: border-box;
+            z-index: 5;
+        }
+        .tooltipster:before,
+        .tooltipster:after {
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -9px;
+            left: 15px;
+            border-width: 0 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent #fff;
+            content: '';
+            z-index: 6;
+        }
+        .tooltipster:after {
+            border-color: transparent transparent #ededed;
+            top: -12px;
+            z-index: 5;
+        }
+
+        .login .l-type span,
+        .login .password span {
+            color: #8b8b8b;
+            display: block;
+            font-size: 15px;
+        }
+        .login .l-type input,
+        .login .password input {
+            border-color: #d5d5d5;
+            border-radius: 0;
+            min-height: 40px;
+            line-height: normal;
+            outline: none;
+        }
+        .login .l-type.active {
+            display: block;
+        }
+        .login .email-suggestion {
+            padding-top: 5px;
+            font-size: 13px;
+            font-weight: 400;
+            color: #ff46a9;
+        }
+        .login .email-suggestion span {
+            display: inherit;
+            color: inherit;
+            font-size: inherit;
+        }
+        .login .email-suggestion a {
+            word-break: break-all;
+            text-decoration: none;
+        }
+        .login .email-suggestion_names {
+            font-weight: bold;
+            color: #07c;
+        }
+
+        .auth-box-checkbox-title {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .auth-box-checkbox-title:before {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            content: "";
+            width: 20px;
+            height: 20px;
+            border: 1px solid #d5d5d5;
+        }
+
+     .auth-box-checkbox-field[type="checkbox"]:checked~.auth-box-checkbox-title:after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 9px;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAYUlEQVR4AWP477aSJEwTDW1AfJ1YDQFA/A+Il2LT0AnEXkh8JSD+ADWdF5uG00D8FYh1gZgDiM9B+dq4/KACNfEO1An/gTiWkKc9gfgPVPFMYkOpBGoLJ33iAVPD//8kYQANxjTHlNluwwAAAABJRU5ErkJggg==") no-repeat center center;
+            background-size: auto 13px;
+        }
+
+        .media-enter {
+            overflow: hidden;
+        }
+        .media-enter li {
+            float: left;
+        }
+        .media-enter label {
+            position: relative;
+        }
+        .media-enter input {
+            position: absolute;
+            visibility: hidden;
+        }
+        .media-enter span {
+            border: 1px solid #ddd;
+            border-width: 1px 1px 1px 0;
+            color: #272727;
+            cursor: pointer;
+            display: inline-block;
+            height: 38px;
+            line-height: 39px;
+            text-align: center;
+            vertical-align: top;
+            width: 133px;
+        }
+        .media-enter li:first-child span{
+            border-width: 1px 0 1px 1px;
+            width: 165px;
+        }
+        .media-enter input:checked + span {
+            border-color: #dd48a5;
+            background: #dd48a5;
+            color: #fff;
+            cursor: default;
+            position: relative;
+        }
+        .media-enter input:checked + span:before {
+            border-style: solid;
+            border-width: 6px 6px 0 6px;
+            border-color: #dd48a5 transparent transparent transparent;
+            bottom: -7px;
+            content: '';
+            height: 0;
+            left: 48%;
+            position: absolute;
+            width: 0;
+        }
+        .phone-code {
+            display: inline-block;
+        }
+        .phone-code select {
+            border: 1px solid #ccc;
+            height: 40px;
+            width: 88px;
+        }
+        .phone-code + input[type="text"] {
+            float: right;
+            position: relative;
+            width: 202px;
+            z-index: 2;
+        }
+        .media-enter + ol > li + li div {
+            /*display: block;*/
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        .media-enter + ol .phone-code {
+            left: 0;
+            position: absolute;
+            top: 21px;
+        }
+    </style>
+    <base href="https://security.wildberries.ru/">
+</head>
+<body class="login">
+    <input name="__RequestVerificationToken" value="6e0m8c19lZz1B4Z6y7tneCVX4hGDaSmqgl2nQuNLn934iGly_q1rBXc9w8rMFho53C2ErbWEjYhs9gf4r-jEhp3M0i01" type="hidden">
+    <h4>Вход на сайт</h4>
+    <ol>
+        <li class="l-type j-mail j-b-login-wrapper j-b-login-email">
+            <div>
+                <span>Email, логин или телефон</span>
+                <input class="auth-box-field j-track" data-val="true" data-val-mvcvtkrequiredif="Укажите ваш логин" data-val-mvcvtkrequiredif-dependentproperty="UsePhone" data-val-mvcvtkrequiredif-targetvalue="false" id="Item_Login" name="Item.Login" tabindex="1" title="Для входа в личный кабинет с помощью номера телефона введите его в следующем формате: 7ХХХХХХХХХХ" value="" type="text">
+            </div>
+        </li>
+        <li class="password">
+            <div>
+                <span>Пароль</span>
+                <input class="auth-box-field j-track" data-val="true" data-val-required="Укажите пароль" id="Item_Password" maxlength="50" name="Item.Password" tabindex="2" type="password">
+            </div>
+        </li>
+        <li class="l-type j-phone j-b-login-wrapper j-b-login-phone hide">
+            <div>
+                <span>Email, логин или телефон</span>
+                <input class="auth-box-field j-track" data-val="true" data-val-mvcvtkrequiredif="Введите номер телефона!" data-val-mvcvtkrequiredif-dependentproperty="UsePhone" data-val-mvcvtkrequiredif-targetvalue="true" data-val-regex="Введите номер телефона!" data-val-regex-pattern="^[1-7,9]\d{10,13}$" id="Item_FullPhoneMobile" name="Item.FullPhoneMobile" title="Для входа в личный кабинет с помощью номера телефона введите его в следующем формате: 7ХХХХХХХХХХ" value="" type="text">
+            </div>
+        </li>
+        <li class="auth-captcha">
+            <div class="j-b-auth-captcha hide">
+                
+
+
+  <div class="LBD_CaptchaDiv" id="signIn_CaptchaDiv" style="width: 245px !important; height: 40px !important;"><!--
+ --><div class="LBD_CaptchaImageDiv" id="signIn_CaptchaImageDiv" style="width: 220px !important; height: 40px !important;"><!--
+   --><a target="_blank" href="#" title="Проверочный код"><img class="LBD_CaptchaImage" id="signIn_CaptchaImage" src="/BotDetectCaptcha.ashx?get=image&amp;c=signIn&amp;t=9bae027e30ed4272ae54b8fabc4cb4f0" alt="Проверочный код"></a><!-- --></div><!--
+ --><div class="LBD_CaptchaIconsDiv" id="signIn_CaptchaIconsDiv" style="width: 19px !important;"><!--
+   --><a class="LBD_ReloadLink" id="signIn_ReloadLink" href="#" onclick="signIn.ReloadImage(); this.blur(); return false;" title="Обновить проверочный код" style="display: inline-block !important;"><img class="LBD_ReloadIcon" id="signIn_ReloadIcon" src="https://static.wbstatic.net/i/blank.gif" alt="Обновить проверочный код"></a><!--
+ --></div>
+    <script type="text/javascript" async="" src="https://remote.captcha.com/include.js?i=ATABMAEwATMBMAIxNhQBEAB1EOslW3qJfBBaz4v7lV47Pg"></script><script src="/BotDetectCaptcha.ashx?get=clientScriptInclude" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+      BotDetect.Init('signIn', '9bae027e30ed4272ae54b8fabc4cb4f0', 'CaptchaCode', true, true, true, true, 1200, 7200, 0, true);
+    //]]>
+    </script>
+    <script type="text/javascript">
+    //<![CDATA[
+      try{(function(){var bdrsn = document.createElement('script'); bdrsn.type = 'text/javascript'; bdrsn.async = true; bdrsn.src = document.location.protocol + '//remote.captcha.com/include.js?i=ATABMAEwATMBMAIxNhQBEAB1EOslW3qJfBBaz4v7lV47Pg'; var fsn = document.getElementsByTagName('script')[0]; fsn.parentNode.insertBefore(bdrsn, fsn);})();} catch(err){}
+    //]]>
+    </script>
+    <input name="CaptchaInstanceId" id="LBD_VCID_signIn" value="9bae027e30ed4272ae54b8fabc4cb4f0" type="hidden">
+    <input name="LBD_BackWorkaround_signIn" id="LBD_BackWorkaround_signIn" value="1" type="hidden">
+  </div>
+
+
+<input autocomplete="off" class="j-track" disabled="disabled" id="CaptchaCode" name="CaptchaCode" tabindex="5" value="" style="text-transform: uppercase;" type="text">            </div>
+        </li>
+        <li class="submit">
+            <input value="true" name="Item.UsePhone" id="Item_UsePhone" class="hide" type="checkbox">
+            <button id="signIn" disabled="disabled" tabindex="7">Войти</button>
+        </li>
+        <li class="for-error">
+            <p class="errormsg" id="error" style="display: none;"></p>
+        </li>
+        <li class="submit">
+            <label class="auth-box-checkbox">
+                <input value="true" name="Item.IsPersistentCookie" id="Item_IsPersistentCookie" checked="" class="auth-box-checkbox-field hide" type="checkbox" hidden="">
+                <div class="auth-box-checkbox-title">
+                    Запомнить меня на этом компьютере
+                </div>
+            </label>
+        </li>
+        <li class="for-forgot">
+            <a href="https://security.wildberries.ru/retrivepassword" class="forgot j-lnk-outer" tabindex="6">Забыли пароль?</a>
+        </li>
+        <li class="for-register">
+            <a href="https://security.wildberries.ru/register" class="forgot j-lnk-outer">Зарегистрироваться</a>
+        </li>
+        
+    </ol>
+
+
+    <div class="social-input">
+            <div class="social-head">Войти через</div>
+                            <a target="_blank" class="vkontakte" href="https://oauth.vk.com/authorize?scope=friends,offline,email&amp;client_id=4249343&amp;redirect_uri=https://security.wildberries.ru/sociallogon/vkontakte&amp;state=state=signinpopup">ВКонтакте</a>
+            <a target="_blank" class="facebook" href="https://www.facebook.com/dialog/oauth?scope=email,user_birthday&amp;client_id=273436802668391&amp;redirect_uri=https://security.wildberries.ru/sociallogon/facebook&amp;state=state=signinpopup">Facebook</a>
+            <a target="_blank" class="mailru" href="https://oauth.mail.ru/login?response_type=code&amp;scope=userinfo&amp;client_id=a35f41392fe64abab25a737812e5bf2d&amp;redirect_uri=https://security.wildberries.ru/sociallogon/mailru&amp;state=state=signinpopup">Mail.ru</a>
+            <a target="_blank" class="odnoklassniki" href="http://www.odnoklassniki.ru/oauth/authorize?client_id=987802624&amp;response_type=code&amp;redirect_uri=https://security.wildberries.ru/sociallogon/odnoklassniki&amp;state=state=signinpopup">Одноклассники</a>
+            <a target="_blank" class="googleplus" href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;scope=https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile&amp;client_id=521235570966-jdmi1f6q2rl6behhrdblkj0ng5hdhsvd.apps.googleusercontent.com&amp;redirect_uri=https://security.wildberries.ru/sociallogon/googleplus&amp;state=state=signinpopup">Google+</a>
+            <a target="_blank" class="instagram" href="https://api.instagram.com/oauth/authorize/?response_type=code&amp;client_id=1dd4a9cae32d4b0a9936d786754e7678&amp;redirect_uri=https://security.wildberries.ru/sociallogon/instagram&amp;state=state=signinpopup">Instagram</a>
+    </div>
+
+
+    <div id="loading" class="loading"></div>
+     <span class="j-popup-tooltip hide">
+        Для входа в личный кабинет с помощью номера телефона введите его в следующем формате: 7ХХХХХХХХХХ 
+    </span>
+
+    <script src="//static.wbstatic.net/j/signIn.min.js?9b740375ff4d128d" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            wb.login.bindSignInNew('https://security.wildberries.ru/loginajax', {
+                loginWrapper: '.j-b-login-wrapper',
+                password: '#Item_Password',
+                loginEmail: '.j-b-login-email',
+                loginPhone: '.j-b-login-phone',
+                usePhone: '#Item_UsePhone'
+            });
+        });
+    </script>
+
+</body></html>
