@@ -2,14 +2,9 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
-
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 /**
@@ -49,11 +44,6 @@ public class PersonalAccount {
     public void countItemOnPageShouldBe100 () {
       $("#tbSrch").setValue("платье").pressEnter();
       $$(".ref_goods_n_p").shouldHave(CollectionCondition.size(100));
-
-//    @AfterClass
-//    public static void closeAccount(){
-//      clearBrowserLocalStorage();
-//    }
 
     }
   }
