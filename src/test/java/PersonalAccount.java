@@ -17,13 +17,13 @@ public class PersonalAccount {
     open("http://wildberries.ru");
     Configuration.timeout=6000;
   }
-@Ignore
-  @Test
-  public void userCanRegistration () {
-    $$(".user_menu li").get(0).click();
-    $(".auth-tabs-switch ").click();
-    $("#Item_Login").setValue("ana-kucko@yandex.ru");
-  }
+//@Ignore
+//  @Test
+//  public void userCanRegistration () {
+//    $$(".user_menu li").get(0).click();
+//    $(".auth-tabs-switch ").click();
+//    $("#Item_Login").setValue("ana-kucko@yandex.ru");
+//  }
 //@Ignore
     @Test
     public void userCanEnterToAccountByEmail () {
@@ -33,17 +33,17 @@ public class PersonalAccount {
       $("#Item_Login").setValue("123");
       $("#Item_Password").setValue("scrabble");
     }
-@Ignore
-    @Test
-    public void userCanSearchBySite () {
-      $("#tbSrch").setValue("платье").pressEnter();
-      $(".active").shouldNot(Condition.empty);
-    }
-@Ignore
-    @Test
-    public void countItemOnPageShouldBe100 () {
-      $("#tbSrch").setValue("платье").pressEnter();
-      $$(".ref_goods_n_p").shouldHave(CollectionCondition.size(100));
-
-    }
+//@Ignore
+//    @Test
+//    public void userCanSearchBySite () {
+//      $("#tbSrch").setValue("платье").pressEnter();
+//      $(".active").shouldNot(Condition.empty);
+//    }
+//@Ignore
+//    @Test
+//    public void countItemOnPageShouldBe100 () {
+//      $("#tbSrch").setValue("платье").pressEnter();
+//      $$(".ref_goods_n_p").shouldHave(CollectionCondition.size(100));
+//
+//    }
   }
